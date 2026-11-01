@@ -1,0 +1,60 @@
+{
+  "name": "pixel-buddy",
+  "version": "1.0.0",
+  "description": "An animated pixel Claude in place of the working dots, a HUD above the prompt, rotating tips and icon tool rows for the Claude desktop app.",
+  "author": {
+    "name": "pixel-buddy contributors"
+  },
+  "license": "MIT",
+  "keywords": [
+    "ui",
+    "theme",
+    "pixel",
+    "hud",
+    "spinner"
+  ],
+  "userConfig": {
+    "user_name": {
+      "type": "string",
+      "title": "Your name",
+      "description": "The name the HUD greets you by, e.g. \"Chào buổi sáng, Nam ☀️\".",
+      "default": "bạn"
+    },
+    "buddy_name": {
+      "type": "string",
+      "title": "Buddy name",
+      "description": "What the pixel Claude calls itself while it works, e.g. \"Đệ đang cày…\".",
+      "default": "Đệ"
+    },
+    "utc_offset": {
+      "type": "number",
+      "title": "UTC offset (hours)",
+      "description": "Your time zone for the HUD clock and greeting: 7 for Vietnam, 9 for Japan, -5 for New York.",
+      "default": 7
+    },
+    "show_spinner": {
+      "type": "boolean",
+      "title": "Pixel Claude working row",
+      "description": "Draw the pixel Claude at its laptop in place of the working dots.",
+      "default": true
+    },
+    "show_hud": {
+      "type": "boolean",
+      "title": "HUD above the prompt",
+      "description": "Show the band with greeting, folder, model, clock, turns and tool count.",
+      "default": true
+    },
+    "show_tips": {
+      "type": "boolean",
+      "title": "Rotating tips",
+      "description": "Replace the hint under the prompt with a tip that changes every two minutes.",
+      "default": true
+    },
+    "show_tool_rows": {
+      "type": "boolean",
+      "title": "Icon tool rows",
+      "description": "Draw each tool call as one row with an icon, status and duration.",
+      "default": true
+    }
+  }
+}

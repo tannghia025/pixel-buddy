@@ -1,0 +1,9 @@
+# written by Claude Code when the plugin loads
+.claude-plugin/types/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/

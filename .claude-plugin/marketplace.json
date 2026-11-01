@@ -1,0 +1,12 @@
+{
+  "name": "pixel-buddy",
+  "owner": { "name": "pixel-buddy contributors" },
+  "description": "Marketplace for the pixel-buddy plugin.",
+  "plugins": [
+    {
+      "name": "pixel-buddy",
+      "source": "./",
+      "description": "An animated pixel Claude, a HUD above the prompt, rotating tips and icon tool rows for the Claude desktop app."
+    }
+  ]
+}
