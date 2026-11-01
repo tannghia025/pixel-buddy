@@ -4,6 +4,9 @@ Plugin giao diện cho **Claude Code trong app Claude desktop** (và VS Code): t
 
 Plugin chỉ vẽ giao diện. Nó không gửi dữ liệu ra ngoài, không đọc file của bạn và không đổi cách Claude làm việc.
 
+<img width="912" height="205" alt="{38E37646-9D17-4C99-BAD7-66E5F3224566}" src="https://github.com/user-attachments/assets/c2e44ec7-98ff-45e2-ae9a-35a2ce9924b4" />
+
+
 ## Có gì
 
 | Phần | Mô tả |
