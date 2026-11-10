@@ -1,6 +1,6 @@
 {
   "name": "pixel-buddy",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "An animated pixel Claude in place of the working dots, a HUD above the prompt, rotating tips and icon tool rows for the Claude desktop app.",
   "author": {
     "name": "pixel-buddy contributors"

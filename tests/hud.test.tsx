@@ -25,8 +25,17 @@ const session = (on: On, cwd: string) => {
   on('session.turns', () => ({ value: 3 }))
 }
 
+// The engine's own band with nothing in it, under the plugin.
+const emptyBand = (on: On) =>
+  on('ui.render', ($, e) => {
+    const { Box } = $.ui.resolve(e)
+
+    return <Box />
+  })
+
 test('the HUD greets the configured name and shortens a worktree', { options: { user_name: 'Nam' } }, async ($, on) => {
   session(on, '/home/dev/shop-api/.claude/worktrees/fix-login-3f2a1c')
+  emptyBand(on)
 
   const ui = await $.ui.mount({ ...BAND, surface: 'desktop' })
 
@@ -41,12 +50,29 @@ test('the HUD uses the buddy name while working and the time zone given', {
   options: { buddy_name: 'Bé', utc_offset: -5 },
 }, async ($, on) => {
   session(on, '/home/dev/shop-api')
+  emptyBand(on)
 
   const ui = await $.ui.mount({ ...BAND, props: { ...BAND.props, isWorking: true }, surface: 'desktop' })
 
   expect((await ui.find({ type: 'Text', text: /đang cày/ }))?.text).toBe('Bé đang cày…')
   expect((await ui.find({ type: 'Text', text: /🕒/ }))?.text).toBe('🕒 21:05')
   expect((await ui.find({ type: 'Text', text: /📁/ }))?.text).toBe('📁 shop-api')
+  await ui.unmount()
+})
+
+test('what another plugin draws in the band stays, under the HUD', async ($, on) => {
+  // stands for a plugin beneath, such as a scenery band
+  on('ui.render', ($, e) => {
+    const { Text } = $.ui.resolve(e)
+
+    return <Text>scenery</Text>
+  })
+  session(on, '/home/dev/shop-api')
+
+  const ui = await $.ui.mount({ ...BAND, surface: 'desktop' })
+
+  expect((await ui.find({ type: 'Text', text: /Chào buổi sáng/ }))?.text).toBe('Chào buổi sáng, bạn ☀️')
+  expect((await ui.find({ type: 'Text', text: /scenery/ }))?.text).toBe('scenery')
   await ui.unmount()
 })
 

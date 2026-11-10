@@ -56,34 +56,39 @@ export const registerHud = (on: On, config: Config) => {
     const hh = String(local.getUTCHours()).padStart(2, '0')
     const mm = String(local.getUTCMinutes()).padStart(2, '0')
     const isWorking = e.props.isWorking
+    // Whatever other plugins draw in the band goes under the HUD, not away.
+    const others = await next(e)
 
     return (
-      <Box
-        flexDirection="row"
-        alignItems="center"
-        gap={2}
-        paddingX={1}
-        borderStyle="round"
-        borderColor={isWorking ? 'claude' : 'subtle'}
-        flexWrap="wrap"
-      >
-        <Svg
-          source={miniCrabSvg(isWorking)}
-          alt={isWorking ? 'Claude đang làm' : 'Claude đang ngủ'}
-          width={40}
-          height={28}
-          isInteractive
-        />
-        <Text bold color="claude">
-          {isWorking ? `${config.buddyName} đang cày…` : greetingAt(local.getUTCHours(), config.userName)}
-        </Text>
-        <Text dimColor>📁 {folderLabel(cwd)}</Text>
-        <Text dimColor>🤖 {prettyModel(model)}</Text>
-        <Text dimColor>
-          🕒 {hh}:{mm}
-        </Text>
-        <Text dimColor>💬 {turns} lượt</Text>
-        <Text dimColor>⚡ {toolsRun()} tool</Text>
+      <Box flexDirection="column">
+        <Box
+          flexDirection="row"
+          alignItems="center"
+          gap={2}
+          paddingX={1}
+          borderStyle="round"
+          borderColor={isWorking ? 'claude' : 'subtle'}
+          flexWrap="wrap"
+        >
+          <Svg
+            source={miniCrabSvg(isWorking)}
+            alt={isWorking ? 'Claude đang làm' : 'Claude đang ngủ'}
+            width={40}
+            height={28}
+            isInteractive
+          />
+          <Text bold color="claude">
+            {isWorking ? `${config.buddyName} đang cày…` : greetingAt(local.getUTCHours(), config.userName)}
+          </Text>
+          <Text dimColor>📁 {folderLabel(cwd)}</Text>
+          <Text dimColor>🤖 {prettyModel(model)}</Text>
+          <Text dimColor>
+            🕒 {hh}:{mm}
+          </Text>
+          <Text dimColor>💬 {turns} lượt</Text>
+          <Text dimColor>⚡ {toolsRun()} tool</Text>
+        </Box>
+        {others}
       </Box>
     )
   })
